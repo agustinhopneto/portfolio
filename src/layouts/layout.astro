@@ -1,0 +1,52 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Shrikhand&display=swap" rel="stylesheet">
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--pineapple-200: #FFFEE9;
+		--pineapple-500: #FFFCC7;
+		--pineapple-800: #666550;
+		--pineapple-900: #333228;
+
+		--apricot-500: #EF9A48;
+
+		--raspberry-500: #D54751;
+
+		--mint-500: #4DA394;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		outline: 0;
+		box-sizing: border-box;
+		font-family: 'Roboto Slab', serif;
+	}
+
+	html {
+		height: 100dvh;
+		background-color: var(--pineapple-200);
+	}	
+</style>

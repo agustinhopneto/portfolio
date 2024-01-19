@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/layout.astro';
+---
+
+<Layout title="Agustinho's Portfolio">
+	<main class="container">
+		<section class="content">
+			<div>
+				<h1 class="title">
+					<span class="title highlight">Together</span>
+					we can build <br />
+					something
+					<span data-typed-out class="title highlight typed-out">awesome.</span>
+				</h1>
+
+				<p class="subtitle">Hey, I’m Agustinho!<br />
+					I’m a software developer based in Brazil and I can help you.
+				</p>
+			</div>
+		</section>
+		<div class="stripes">
+			<div class="stripe" />
+			<div class="stripe" />
+			<div class="stripe" />
+			<div class="stripe" />
+		</div>
+		<div class="vinyl">
+			<div class="vinyl-reflex">
+				<div class="vinyl-lines">
+					<div class="vinyl-center">
+						<div class="vinyl-point" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<script>
+const words = ['awesome.', 'innovative.', 'helpful.', 'creative.'];
+
+function nextWord() {
+	const dynamicWordElement = document.querySelector('.typed-out');
+
+	if (!dynamicWordElement) {
+		return;
+	}
+
+	const currentWordIndex = words.findIndex(item => item === dynamicWordElement.innerHTML);
+
+	let nextWordIndex = 0;
+
+	if (currentWordIndex !== -1 && currentWordIndex < words.length - 1) {
+		nextWordIndex = currentWordIndex + 1;
+	}
+
+	dynamicWordElement.innerHTML = words.at(nextWordIndex) as string;
+
+	dynamicWordElement.getAnimations().forEach(anim => {
+		anim.cancel();
+		anim.play();
+	});
+};
+
+setInterval(() => nextWord(), 4000);
+</script>
+
+<style>
+	.container {
+		height: 100dvh;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.content {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		padding-left: 4.5rem;
+	}
+
+	.title {
+		font-family: 'Shrikhand', sans-serif;
+		font-weight: 500;
+		font-size: 4.5rem;
+		line-height: 100%;
+		color: var(--pineapple-900);
+		filter: drop-shadow(0 0.125rem 0 var(--raspberry-500))
+	}
+
+	.title .highlight {
+		color: var(--mint-500);
+	}
+
+	.subtitle {
+		font-size: 1.5rem;
+		line-height: 120%;
+		margin-top: 1.25rem;
+		color: var(--pineapple-800)
+	}
+
+	.stripes {
+		position: absolute;
+		display: flex;
+		height: 100%;
+		top: 0;
+		right: 10rem;
+	}
+
+	.stripe {
+		height: 100%;
+		width: 1.25rem;
+		background-color: var(--raspberry-500);
+		z-index: 0;
+	}
+
+	.stripe:nth-child(1) {
+		background-color: var(--mint-500);
+	}
+
+	.stripe:nth-child(2) {
+		background-color: var(--pineapple-500);
+	}
+
+	.stripe:nth-child(3) {
+		background-color: var(--apricot-500);
+	}
+
+	.vinyl {
+		position: absolute;
+		width: 45rem;
+		aspect-ratio: 1/1;
+		top: calc(50% - 22.5rem);
+		left: calc(100% - 22.5rem);
+		background-image: url('/assets/vinyl-base.svg');
+		background-position: center;
+		background-size: cover;
+		z-index: 1;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		filter: drop-shadow(0 0.75rem 0.75rem rgba(0, 0, 0, 0.6))
+	}
+
+	.vinyl-lines {
+		position: absolute;
+		width: 40.5rem;
+		aspect-ratio: 1/1;
+		background-image: url('/assets/vinyl-lines.svg');
+		background-position: center;
+		background-size: cover;
+		z-index: 2;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.vinyl-center {
+		width: 18rem;
+		aspect-ratio: 1/1;
+		background-image: url('/assets/vinyl-center.svg');
+		background-position: center;
+		background-size: cover;
+		z-index: 3;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.vinyl-reflex {
+		width: 100%;
+		aspect-ratio: 1/1;
+		background-image: url('/assets/vinyl-reflex.svg');
+		background-position: center;
+		background-size: cover;
+		z-index: 5;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.vinyl-point {
+		width: 1.25rem;
+		aspect-ratio: 1/1;
+		background-image: url('/assets/vinyl-point.svg');
+		background-position: center;
+		background-size: cover;
+		z-index: 4;
+	}
+
+	.typed-out{
+    overflow: hidden;
+		display: inline-flex;
+		max-width: fit-content;
+    border-right: 0.125rem solid var(--pineapple-900);
+    white-space: nowrap;
+    width: 0;
+    animation: typing 1s steps(16, end) forwards, blink 0.6s infinite;
+	}
+
+	@keyframes typing {
+		from { width: 0; }
+		to { width: 100%; }
+	}
+
+	@keyframes blink {
+		from { border-color: transparent; }
+		to { border-color: var(--pineapple-900); }
+	}
+</style>
